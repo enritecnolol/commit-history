@@ -17,15 +17,16 @@ export class GithubService {
     return commitsData.map((commit) => {
       return {
         authorName: commit.commit.author.name,
+        authorUsername: commit.author.login,
         authorDate: commit.commit.author.date,
-        message: commit.message,
+        message: commit.commit.message,
         htmlUrl: commit.html_url,
         avatarUrl: commit.author ? commit.author.avatar_url : null,
       };
     });
   }
 
-  async getCommits(owner: string, repo: string): Promise<Commit[]> {
+  async getCommits(owner: string, repo: string) {
     try {
       const response = await this.octokit.repos.listCommits({
         owner,
