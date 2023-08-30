@@ -1,7 +1,19 @@
 import CommitIcon from "./CommitIcon";
 import IconCode from "../assets/icons-code.png";
+import { Commit } from "../types/types";
+import getTimeAgo from "../lib/getTimeAgo";
 
-export default function CommitItem() {
+type CommitItemProps = {
+  commitData: Commit;
+};
+
+export default function CommitItem({ commitData }: CommitItemProps) {
+  const {authorDate, authorUsername, avatarUrl, message} = commitData;
+
+  const handleButtonClick = () => {
+    window.open(commitData.htmlUrl, "_blank", "noreferrer");
+  }
+
   return (
     <div className="flex w-[50rem] h-20 items-center gap-x-3">
       <div className="">
@@ -9,21 +21,25 @@ export default function CommitItem() {
       </div>
       <div className="flex flex-row gap-x-4 w-full py-4 px-2.5 rounded-lg border bg-slate-900 border-gray-700">
         <img
-          src="https://avatars.githubusercontent.com/u/37670842?v=4"
-          className="h-12 rounded-full cursor-pointer hover:opacity-50"
+          src={avatarUrl ?? "https://placehold.co/400x225"}
+          className="h-12 w-12 rounded-full cursor-pointer hover:opacity-50"
+          loading="lazy"
         />
         <div className="flex justify-between w-full">
           <div className="flex-col">
-            <p className="cursor-pointer hover:text-sky-400">add github module to app module</p>
+            <p className="cursor-pointer hover:text-sky-400">
+              {message}
+            </p>
             <p className="text-sm text-gray-600">
               <span className="text-white hover:underline hover:underline-offset-1 cursor-pointer">
-                Enritecnolol
+                {authorUsername}
               </span>{" "}
-              commited 2 hours ago
+              commited {getTimeAgo(authorDate)}
+              
             </p>
           </div>
           <div className="flex items-center">
-            <button className="rounded-lg bg-dark-soft px-2 py-1">
+            <button className="rounded-lg bg-dark-soft px-2 py-1" onClick={handleButtonClick}>
               <img src={IconCode} className="w-6" alt="" />
             </button>
           </div>

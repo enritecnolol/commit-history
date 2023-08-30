@@ -17,8 +17,8 @@ export default function CommitHistoryPage() {
     <div className="w-full flex justify-center">
       <div className="flex flex-col gap-y-5 mb-4">
         <div className="text-2xl pb-2 border-b-2 border-slate-800">Commits</div>
-        {commits.map((_, index) => {
-          return <CommitItem key={index} />;
+        {commits.map((commit, index) => {
+          return <CommitItem commitData={commit} key={index} />;
         })}
       </div>
     </div>
