@@ -12,6 +12,10 @@ export default function CommitItem({ commitData }: CommitItemProps) {
 
   const redirectToCode = () => {
     window.open(htmlUrl, "_blank", "noreferrer");
+  }  
+
+  const redirectToGithubProfile = () => {
+    window.open(`https://github.com/${authorUsername}`, "_blank", "noreferrer");
   }
 
   return (
@@ -24,6 +28,7 @@ export default function CommitItem({ commitData }: CommitItemProps) {
           src={avatarUrl ?? "https://placehold.co/400x225"}
           className="h-12 w-12 rounded-full cursor-pointer hover:opacity-50"
           loading="lazy"
+          onClick={redirectToGithubProfile}
         />
         <div className="flex justify-between w-full">
           <div className="flex-col">
@@ -31,11 +36,10 @@ export default function CommitItem({ commitData }: CommitItemProps) {
               {message}
             </p>
             <p className="text-sm text-gray-600">
-              <span className="text-white hover:underline hover:underline-offset-1 cursor-pointer">
+              <span className="text-white hover:underline hover:underline-offset-1 cursor-pointer" onClick={redirectToGithubProfile}>
                 {authorUsername}
               </span>{" "}
               commited {getTimeAgo(authorDate)}
-              
             </p>
           </div>
           <div className="flex items-center">
