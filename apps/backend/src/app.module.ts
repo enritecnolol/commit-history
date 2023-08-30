@@ -6,6 +6,7 @@ import { GithubModule } from './modules/github/github.module';
   imports: [
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '../../', 'frontend/dist'),
+      renderPath: '/',
     }),
     GithubModule,
   ],
