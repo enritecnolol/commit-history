@@ -13,7 +13,7 @@ export class GithubService {
     });
   }
 
-  reformatCommitsData(commitsData: CommitData[]): Commit[] {
+  private reformatCommitsData(commitsData: CommitData[]): Commit[] {
     return commitsData.map((commit) => {
       return {
         authorName: commit.commit.author.name,
@@ -26,7 +26,7 @@ export class GithubService {
     });
   }
 
-  async getCommits(owner: string, repo: string) {
+  async getCommits(owner: string, repo: string): Promise<Commit[]> {
     try {
       const response = await this.octokit.repos.listCommits({
         owner,
