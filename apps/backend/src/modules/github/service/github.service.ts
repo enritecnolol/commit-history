@@ -1,5 +1,6 @@
 import { Octokit } from '@octokit/rest';
 import fetch from 'node-fetch';
+import { Commit } from '../repository/github';
 
 export class GithubService {
   private readonly octokit: Octokit;
@@ -12,7 +13,7 @@ export class GithubService {
     });
   }
 
-  reformatCommitsData(commitsData: any[]): any[] {
+  reformatCommitsData(commitsData: any[]): Commit[] {
     return commitsData.map((commit) => {
       return {
         authorName: commit.commit.author.name,
@@ -24,7 +25,7 @@ export class GithubService {
     });
   }
 
-  async getCommits(owner: string, repo: string): Promise<any> {
+  async getCommits(owner: string, repo: string): Promise<Commit[]> {
     try {
       const response = await this.octokit.repos.listCommits({
         owner,
