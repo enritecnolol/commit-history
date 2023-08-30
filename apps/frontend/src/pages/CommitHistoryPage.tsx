@@ -3,17 +3,25 @@ import CommitItem from "../components/CommitItem";
 import { Commit } from "../types/types";
 import { getCommits } from "../services";
 import { useTitle } from "../hooks/useTitle";
+import Loading from "../components/Loading";
 
 export default function CommitHistoryPage() {
-  const [commits, setCommits] = useState<Commit[]>([])
+  const [commits, setCommits] = useState<Commit[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   useTitle("GitYo - Commit History")
 
   useEffect(() => {
+    setIsLoading(true);
     getCommits().then((response) => {
       setCommits(response)
-    })
+    }).finally(() => 
+    setIsLoading(false))
   }, [])
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   return (
     <div className="w-full flex justify-center">
