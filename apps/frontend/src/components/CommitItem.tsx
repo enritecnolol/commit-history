@@ -8,10 +8,10 @@ type CommitItemProps = {
 };
 
 export default function CommitItem({ commitData }: CommitItemProps) {
-  const {authorDate, authorUsername, avatarUrl, message} = commitData;
+  const {authorDate, authorUsername, avatarUrl, message, htmlUrl} = commitData;
 
-  const handleButtonClick = () => {
-    window.open(commitData.htmlUrl, "_blank", "noreferrer");
+  const redirectToCode = () => {
+    window.open(htmlUrl, "_blank", "noreferrer");
   }
 
   return (
@@ -27,7 +27,7 @@ export default function CommitItem({ commitData }: CommitItemProps) {
         />
         <div className="flex justify-between w-full">
           <div className="flex-col">
-            <p className="cursor-pointer hover:text-sky-400">
+            <p className="cursor-pointer hover:text-sky-400" onClick={redirectToCode}>
               {message}
             </p>
             <p className="text-sm text-gray-600">
@@ -39,7 +39,7 @@ export default function CommitItem({ commitData }: CommitItemProps) {
             </p>
           </div>
           <div className="flex items-center">
-            <button className="rounded-lg bg-dark-soft px-2 py-1" onClick={handleButtonClick}>
+            <button className="rounded-lg bg-dark-soft px-2 py-1" onClick={redirectToCode}>
               <img src={IconCode} className="w-6" alt="" />
             </button>
           </div>
