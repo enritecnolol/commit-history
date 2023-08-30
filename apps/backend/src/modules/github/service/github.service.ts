@@ -1,6 +1,6 @@
 import { Octokit } from '@octokit/rest';
 import fetch from 'node-fetch';
-import { Commit } from '../repository/github';
+import { Commit, CommitData } from '../repository/github';
 
 export class GithubService {
   private readonly octokit: Octokit;
@@ -13,7 +13,7 @@ export class GithubService {
     });
   }
 
-  reformatCommitsData(commitsData: any[]): Commit[] {
+  reformatCommitsData(commitsData: CommitData[]): Commit[] {
     return commitsData.map((commit) => {
       return {
         authorName: commit.commit.author.name,
@@ -32,7 +32,7 @@ export class GithubService {
         owner,
         repo,
       });
-      return this.reformatCommitsData(response.data);
+      return this.reformatCommitsData(response.data as CommitData[]);
     } catch (error) {
       throw new Error(`Failed to fetch commit: ${error.message}`);
     }
