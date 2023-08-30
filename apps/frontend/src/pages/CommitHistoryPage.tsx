@@ -2,10 +2,12 @@ import { useEffect, useState } from "react";
 import CommitItem from "../components/CommitItem";
 import { Commit } from "../types/types";
 import { getCommits } from "../services";
+import { useTitle } from "../hooks/useTitle";
 
 export default function CommitHistoryPage() {
-
   const [commits, setCommits] = useState<Commit[]>([])
+
+  useTitle("GitYo - Commit History")
 
   useEffect(() => {
     getCommits().then((response) => {
