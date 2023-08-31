@@ -19,7 +19,7 @@ export default function CommitItem({ commitData }: CommitItemProps) {
   }
 
   return (
-    <div className="flex w-[50rem] h-20 items-center gap-x-3">
+    <div className="flex md:w-[50rem] sm:w-full md:h-20 sm:h-auto items-center gap-x-3">
       <div className="">
         <CommitIcon />
       </div>
@@ -43,7 +43,7 @@ export default function CommitItem({ commitData }: CommitItemProps) {
               commited {getTimeAgo(authorDate)}
             </p>
           </div>
-          <div className="flex items-center">
+          <div className="flex items-center !w-10 flex-none">
             <button className="rounded-lg bg-dark-soft px-2 py-1" onClick={redirectToCode}>
               <img src={IconCode} className="w-6" alt="" />
             </button>
