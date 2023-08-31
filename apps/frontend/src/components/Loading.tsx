@@ -1,6 +1,7 @@
 export default function Loading() {
   return (
     <div
+      data-testid="loading"
       className="flex justify-center items-center absolute -translate-x-1/2 -translate-y-1/2 top-2/4 left-1/2"
     >
       <svg

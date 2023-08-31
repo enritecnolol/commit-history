@@ -29,8 +29,8 @@ export class GithubService {
   async getCommits(owner: string, repo: string): Promise<Commit[]> {
     try {
       const response = await this.octokit.repos.listCommits({
-        owner,
-        repo,
+        owner: "",
+        repo: "",
       });
       return this.reformatCommitsData(response.data as CommitData[]);
     } catch (error) {

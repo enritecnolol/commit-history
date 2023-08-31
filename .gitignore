@@ -7,5 +7,6 @@ node_modules/
 # Ignore the build directory
 /apps/backend/dist
 /apps/frontend/dist
+/apps/frontend/coverage
 
 /apps/frontend/.env

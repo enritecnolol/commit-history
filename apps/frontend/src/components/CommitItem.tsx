@@ -29,10 +29,11 @@ export default function CommitItem({ commitData }: CommitItemProps) {
           className="h-12 w-12 rounded-full cursor-pointer hover:opacity-50"
           loading="lazy"
           onClick={redirectToGithubProfile}
+          data-testid="profileImg"
         />
         <div className="flex justify-between w-full">
           <div className="flex-col">
-            <p className="cursor-pointer hover:text-sky-400" onClick={redirectToCode}>
+            <p data-testid="commitMessage" className="cursor-pointer hover:text-sky-400" onClick={redirectToCode}>
               {message}
             </p>
             <p className="text-sm text-gray-600">
